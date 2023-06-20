@@ -1,5 +1,5 @@
 {
-  "name": "CabManagement",
+  "name": "cab-management-driver-api",
   "version": "1.0.0",
   "description": "A driver API service for CabManagement Website",
   "main": "src/index.js",
