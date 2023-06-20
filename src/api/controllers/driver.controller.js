@@ -1,4 +1,4 @@
-const Driver = require("../models/driver.model");
+const Driver = require('../models/driver.model');
 
 /**
  * @api {get} /api/drivers Get all drivers
@@ -19,7 +19,7 @@ const getAllDrivers = async (req, res) => {
     const drivers = await Driver.find();
     res.json(drivers);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -46,10 +46,10 @@ const getDriverById = async (req, res) => {
     if (driver) {
       res.json(driver);
     } else {
-      res.status(404).json({ error: "Driver not found" });
+      res.status(404).json({ error: 'Driver not found' });
     }
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -72,7 +72,9 @@ const getDriverById = async (req, res) => {
  * @apiError (500) InternalServerError Internal server error.
  */
 const createDriver = async (req, res) => {
-  const { name, idNumber, email, phoneNumber } = req.body;
+  const {
+    name, idNumber, email, phoneNumber,
+  } = req.body;
   try {
     const driver = await Driver.create({
       name,
@@ -82,7 +84,7 @@ const createDriver = async (req, res) => {
     });
     res.status(201).json(driver);
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -108,20 +110,24 @@ const createDriver = async (req, res) => {
  */
 const updateDriver = async (req, res) => {
   const { id } = req.params;
-  const { name, idNumber, email, phoneNumber } = req.body;
+  const {
+    name, idNumber, email, phoneNumber,
+  } = req.body;
   try {
     const driver = await Driver.findByIdAndUpdate(
       id,
-      { name, idNumber, email, phoneNumber },
-      { new: true }
+      {
+        name, idNumber, email, phoneNumber,
+      },
+      { new: true },
     );
     if (driver) {
       res.json(driver);
     } else {
-      res.status(404).json({ error: "Driver not found" });
+      res.status(404).json({ error: 'Driver not found' });
     }
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
@@ -143,12 +149,12 @@ const deleteDriver = async (req, res) => {
   try {
     const driver = await Driver.findByIdAndDelete(id);
     if (driver) {
-      res.json({ message: "Driver deleted successfully" });
+      res.json({ message: 'Driver deleted successfully' });
     } else {
-      res.status(404).json({ error: "Driver not found" });
+      res.status(404).json({ error: 'Driver not found' });
     }
   } catch (error) {
-    res.status(500).json({ error: "Internal server error" });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 
